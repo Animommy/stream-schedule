@@ -1,4 +1,8 @@
-<!DOCTYPE html>
+function generateHTML() {
+  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  const data = sheet.getDataRange().getValues();
+  
+  let html = `<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -33,33 +37,21 @@
 </head>
 <body>
   <h1>🎥 Расписание стримов</h1>
-
   <div class="stream-section" id="upcoming">
-    <h2>Будущие стримы</h2>
+    <h2>Будущие стримы</h2>`;
 
+  for (let i = 1; i < data.length; i++) {
+    html += `
     <div class="stream">
-      <div class="date">21 апреля 2025 — 19:00</div>
-      <div>Стрим по аниме-новинкам</div>
-    </div>
+      <div class="date">${data[i][0]} — ${data[i][1]}</div>
+      <div>${data[i][2]}</div>
+    </div>`;
+  }
 
-    <div class="stream">
-      <div class="date">25 апреля 2025 — 20:00</div>
-      <div>Игровой стрим: Genshin Impact</div>
-    </div>
-  </div>
-
-  <div class="stream-section" id="archive">
-    <h2>Прошедшие стримы</h2>
-
-    <div class="stream">
-      <div class="date">15 апреля 2025 — 18:00</div>
-      <div>Обзор весеннего сезона</div>
-    </div>
-
-    <div class="stream">
-      <div class="date">10 апреля 2025 — 20:00</div>
-      <div>Реакции на трейлеры</div>
-    </div>
+  html += `
   </div>
 </body>
-</html>
+</html>`;
+
+  Logger.log(html);
+}
