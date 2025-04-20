@@ -1,8 +1,4 @@
-function generateHTML() {
-  const sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-  const data = sheet.getDataRange().getValues();
-  
-  let html = `<!DOCTYPE html>
+Информация	<!DOCTYPE html>
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
@@ -38,20 +34,15 @@ function generateHTML() {
 <body>
   <h1>🎥 Расписание стримов</h1>
   <div class="stream-section" id="upcoming">
-    <h2>Будущие стримы</h2>`;
-
-  for (let i = 1; i < data.length; i++) {
-    html += `
+    <h2>Будущие стримы</h2>
     <div class="stream">
-      <div class="date">${data[i][0]} — ${data[i][1]}</div>
-      <div>${data[i][2]}</div>
-    </div>`;
-  }
-
-  html += `
+      <div class="date">Mon Apr 21 2025 00:00:00 GMT+0500 (Yekaterinburg Standard Time) — 12</div>
+      <div>букварь</div>
+    </div>
+    <div class="stream">
+      <div class="date">Mon Apr 21 2025 00:00:00 GMT+0500 (Yekaterinburg Standard Time) — 16</div>
+      <div>словарь</div>
+    </div>
   </div>
 </body>
-</html>`;
-
-  Logger.log(html);
-}
+</html>
